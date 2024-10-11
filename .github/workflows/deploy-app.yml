@@ -21,6 +21,7 @@ jobs:
         uses: haythem/public-ip@v1.3
 
         # Whitelist the public IP of the runner on the remote server by adding it to the SSH whitelist and wait 65 seconds for the IP to be whitelisted
+        # URL_ENCODED_PASSWORD with https://www.urlencoder.org/
       - name: Whitelist IP on hosting & delete github old ones (o2switch)
         shell: bash
         run: |
@@ -67,5 +68,5 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           source: "./dist/demo-devops/browser/*"
           target: "~/public_html/jerem.click"
-          rm: true
-          strip_components: 3
+          rm: true # permet de supprimer les
+          strip_components: 3 # permet de ne pas copier l'arborescence de fichier (ici /dist/demo-devops/browser devient /)
