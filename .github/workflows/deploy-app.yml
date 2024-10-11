@@ -67,4 +67,5 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           source: "./dist/demo-devops/browser/*"
           target: "~/public_html/jerem.click"
-          strip_components: 1
+          rm: true
+          strip_components: 3
