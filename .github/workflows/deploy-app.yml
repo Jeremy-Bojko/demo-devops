@@ -12,31 +12,30 @@ on:
 # Définition des jobs
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest # Selection d'une machine virtuelle sur laquelle notre workflow va être executé
+    # runs-on: ubuntu-latest # Selection d'une machine virtuelle sur laquelle notre workflow va être executé
+    runs-on: self-hosted
+
     steps:
-      - name: Check my ip
-        run: curl https://mon-ip.io/
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      # - name: Checkout code
-      #   uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
 
-      # - name: Setup Node.js
-      #   uses: actions/setup-node@v4
-      #   with:
-      #     node-version: 20
+      - name: Install dependencies
+        run: npm install
 
-      # - name: Install dependencies
-      #   run: npm install
+      - name: Build Angular app
+        run: npm run build
 
-      # - name: Build Angular app
-      #   run: npm run build
-
-      # # Deploy to server
-      # - name: Deploy app via SSH
-      #   uses: appleboy/scp-action@v0.1.7
-      #   with:
-      #     host: ${{ secrets.HOST }}
-      #     username: ${{ secrets.USERNAME }}
-      #     key: ${{ secrets.SSH_PRIVATE_KEY }}
-      #     source: "dist/demo-devops/browser/*"
-      #     target: "~/public_html/jerem.click"
+      # Deploy to server
+      - name: Deploy app via SSH
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: "dist/demo-devops/browser/*"
+          target: "~/public_html/jerem.click"
