@@ -65,5 +65,6 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: "dist/demo-devops/browser/*"
+          source: "./dist/demo-devops/browser/*"
           target: "~/public_html/jerem.click"
+          strip_components: 1
