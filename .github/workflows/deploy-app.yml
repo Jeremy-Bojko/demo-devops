@@ -6,6 +6,8 @@ on:
   push:
     branches:
       - main # Déclenchement du workflow lors d'un push sur la branche main
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
 
 # Définition des jobs
 jobs:
@@ -26,6 +28,7 @@ jobs:
       - name: Build Angular app
         run: npm run build
 
+      # Deploy to server
       - name: Deploy app via SSH
         uses: appleboy/scp-action@v0.1.7
         with:
