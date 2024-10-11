@@ -12,8 +12,7 @@ on:
 # Définition des jobs
 jobs:
   build-and-deploy:
-    # runs-on: ubuntu-latest # Selection d'une machine virtuelle sur laquelle notre workflow va être executé
-    runs-on: self-hosted # Selection d'une machine virtuelle sur laquelle notre workflow va être executé
+    runs-on: ubuntu-latest # Selection d'une machine virtuelle sur laquelle notre workflow va être executé
 
     steps:
       # Get the public IP of the runner
